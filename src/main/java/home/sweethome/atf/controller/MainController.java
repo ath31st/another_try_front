@@ -9,19 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
-
 @Controller
 @RequiredArgsConstructor
 public class MainController {
 
     private final UserService userService;
 
+    @GetMapping("/")
+    public String mainPage(Model model) {
+        model.addAttribute("message", "Welcome to main page!");
+        return "index";
+    }
+
     @GetMapping("/users")
     public String getUsers(Model model) {
         model.addAttribute("users", userService.getUsers());
         model.addAttribute("message", "List users");
-        return "index";
+        return "user-list";
     }
 
     @GetMapping("/new-user")
