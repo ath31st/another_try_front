@@ -11,18 +11,24 @@
     <form th:action="@{/new-user}" th:object="${user}" method="post">
         <div class='is-node custom-form'>
             <label>Username:</label>
-            <input type="text" th:field="*{username}"/>
+            <label>
+                <input type="text" th:field="*{username}"/>
+            </label>
         </div>
         <div class='is-node custom-form'>
             <label>Firstname:</label>
-            <input th:field="*{firstname}"/>
+            <label>
+                <input th:field="*{firstname}"/>
+            </label>
         </div>
         <div class='is-node custom-form'>
             <label>Lastname:</label>
-            <input th:field="*{lastname}"/>
+            <label>
+                <input th:field="*{lastname}"/>
+            </label>
         </div>
         <br/>
-        <input type="submit" value="Create" />
+        <input type="submit" value="Create"/>
     </form>
 </div>
 </body>

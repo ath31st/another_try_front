@@ -31,13 +31,13 @@ public class MainController {
     @GetMapping("/new-user")
     public String saveNewUser(Model model) {
         User user = new User();
+        model.addAttribute("message", "Adding new user");
         model.addAttribute("user", user);
         return "new-user";
     }
 
     @PostMapping("/new-user")
-    public String saveNewUser(@ModelAttribute("user") User user, Model model) {
-        model.addAttribute("message", "Adding new user");
+    public String saveNewUser(@ModelAttribute("user") User user) {
         userService.saveNewUser(user);
         return "redirect:/users";
     }
