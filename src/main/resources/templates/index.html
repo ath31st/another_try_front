@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Main page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
 </head>
+
 <body>
-<h1>Welcome</h1>
+<div th:include="fragments/header :: site-header"></div>
 <br>
 <br>
 <h2 th:utext="${message}">message</h2>
-<a th:href="@{/new-user}">Create new user</a>
 <br>
-<a th:href="@{/user-list}">User list</a>
+<br>
+<div th:include="fragments/footer :: copy"></div>
 
 </body>
-
 </html>

@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div th:fragment="site-header">
+    <div class="site-identity">
+        <h1><a href="#">Try to front crafting</a></h1>
+    </div>
+    <nav class="site-navigation">
+        <ul class="nav">
+            <li><a th:href="@{/new-user}">Create new user</a></li>
+            <li><a th:href="@{/users}">User list</a></li>
+        </ul>
+    </nav>
+</div>
+</body>
+
+</html>
