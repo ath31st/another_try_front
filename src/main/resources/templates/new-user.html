@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>New user</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
 </head>
 <body>
-<h1>Demonstration adding user</h1>
-<div>
-    <h1 th:text="${message}"></h1>
-    <form th:action="@{/new-user}" th:object="${user}" method="post">
-        <div class='is-node custom-form'>
-            <label>Username:</label>
-            <label>
-                <input type="text" th:field="*{username}"/>
-            </label>
-        </div>
-        <div class='is-node custom-form'>
-            <label>Firstname:</label>
-            <label>
-                <input th:field="*{firstname}"/>
-            </label>
-        </div>
-        <div class='is-node custom-form'>
-            <label>Lastname:</label>
-            <label>
-                <input th:field="*{lastname}"/>
-            </label>
-        </div>
-        <br/>
-        <input type="submit" value="Create"/>
-    </form>
+<div class="wrapper">
+    <h1>Demonstration adding user</h1>
+    <div>
+        <h1 th:text="${message}"></h1>
+        <form th:action="@{/new-user}" th:object="${user}" method="post">
+            <div class='is-node custom-form'>
+                <label>Username:</label>
+                <label>
+                    <input type="text" th:field="*{username}"/>
+                </label>
+            </div>
+            <div class='is-node custom-form'>
+                <label>Firstname:</label>
+                <label>
+                    <input th:field="*{firstname}"/>
+                </label>
+            </div>
+            <div class='is-node custom-form'>
+                <label>Lastname:</label>
+                <label>
+                    <input th:field="*{lastname}"/>
+                </label>
+            </div>
+            <br/>
+            <input type="submit" value="Create"/>
+        </form>
+    </div>
 </div>
 </body>
 </html>

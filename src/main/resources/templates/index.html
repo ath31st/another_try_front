@@ -4,16 +4,19 @@
     <meta charset="UTF-8"/>
     <title>Main page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
 </head>
 
 <body>
-<div th:include="fragments/header :: site-header"></div>
-<br>
-<br>
-<h2 th:utext="${message}">message</h2>
-<br>
-<br>
-<div th:include="fragments/footer :: copy"></div>
+<div class="wrapper">
+    <div th:include="fragments/header :: site-header"></div>
+    <br>
+    <br>
+    <h2 th:utext="${message}">message</h2>
+    <br>
+    <br>
+    <div th:include="fragments/footer :: copy"></div>
+</div>
 
 </body>
 </html>

@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>User list</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
 </head>
 <body>
-<h1>Demonstration lists</h1>
-<div>
-    <h1 th:text="${message}"></h1>
-    <table th:if="${not #lists.isEmpty(users)}">
-        <tr>
-            <th>username</th>
-            <th>firstname</th>
-            <th>lastname</th>
-        </tr>
-        <tr th:each="user: ${users}">
-            <td th:text="${user.username}">username</td>
-            <td th:text="${user.firstname}">firstname</td>
-            <td th:text="${user.lastname}">lastname</td>
-        </tr>
-    </table>
+<div class="wrapper">
+    <h1>Demonstration lists</h1>
+    <div>
+        <h1 th:text="${message}"></h1>
+        <table th:if="${not #lists.isEmpty(users)}">
+            <tr>
+                <th>username</th>
+                <th>firstname</th>
+                <th>lastname</th>
+            </tr>
+            <tr th:each="user: ${users}">
+                <td th:text="${user.username}">username</td>
+                <td th:text="${user.firstname}">firstname</td>
+                <td th:text="${user.lastname}">lastname</td>
+            </tr>
+        </table>
 
-    <div th:if="${#lists.isEmpty(users)}">
-        <h2>No data found</h2>
+        <div th:if="${#lists.isEmpty(users)}">
+            <h2>No data found</h2>
+        </div>
     </div>
 </div>
 </body>
