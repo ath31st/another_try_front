@@ -9,7 +9,7 @@
 <div class="wrapper">
     <h1>Demonstration adding user</h1>
     <div>
-        <h1 th:text="${message}"></h1>
+        <h2 th:text="${message}"></h2>
         <form th:action="@{/new-user}" th:object="${user}" method="post">
             <div class='is-node custom-form'>
                 <label>Username:</label>
@@ -33,6 +33,12 @@
             <input type="submit" value="Create"/>
         </form>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div th:include="fragments/footer :: copy"></div>
 </div>
 </body>
 </html>
