@@ -2,7 +2,6 @@ package home.sweethome.atf.service;
 
 import home.sweethome.atf.entity.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,8 +25,7 @@ public class UserService {
     }
 
     public User getUser(String username) {
-        return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElseThrow(() ->
-                new UsernameNotFoundException("User not found!"));
+        return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
     }
 
     public List<User> getUsers() {
@@ -35,7 +33,8 @@ public class UserService {
     }
 
     public void register(User userData) throws RuntimeException {
-        if (users.contains(userData)) throw new RuntimeException();
+        User user = getUser(userData.getUsername());
+        if (user != null) throw new RuntimeException();
 
         users.add(userData);
     }
