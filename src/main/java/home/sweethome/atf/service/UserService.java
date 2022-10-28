@@ -34,4 +34,10 @@ public class UserService {
         return users;
     }
 
+    public void register(User userData) throws RuntimeException {
+        if (users.contains(userData)) throw new RuntimeException();
+
+        users.add(userData);
+    }
+
 }

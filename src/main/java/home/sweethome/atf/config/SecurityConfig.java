@@ -21,9 +21,9 @@ public class SecurityConfig {
                 .formLogin()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/register", "/css/**").permitAll()
                 .antMatchers("/", "/users", "/new-user").hasAnyRole("USER")
                 .anyRequest().authenticated();
 

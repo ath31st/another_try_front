@@ -5,6 +5,7 @@ import home.sweethome.atf.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,5 +41,27 @@ public class MainController {
     public String saveNewUser(@ModelAttribute("user") User user) {
         userService.saveNewUser(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("userData", new User());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String userRegistration(User userData, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("registrationForm", userData);
+            return "register";
+        }
+        try {
+            userService.register(userData);
+        }catch (RuntimeException e){
+            bindingResult.rejectValue("email", "userData.email","An account already exists for this email.");
+            model.addAttribute("registrationForm", userData);
+            return "register";
+        }
+        return "redirect:/";
     }
 }
