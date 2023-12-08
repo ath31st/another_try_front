@@ -3,9 +3,11 @@ package home.sweethome.atf.service;
 import home.sweethome.atf.entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@Getter
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -18,17 +20,12 @@ public class UserService {
     users.add(new User("omm", "Lorry", "Physics", "123", "omm@mail.ru"));
   }
 
-  public String saveNewUser(User user) {
+  public void saveNewUser(User user) {
     users.add(user);
-    return "User " + user.getUsername() + " successfully added!";
   }
 
   public User getUser(String username) {
     return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
-  }
-
-  public List<User> getUsers() {
-    return users;
   }
 
   public void register(User userData) throws RuntimeException {
