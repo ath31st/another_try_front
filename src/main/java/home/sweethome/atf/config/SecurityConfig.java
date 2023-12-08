@@ -1,9 +1,10 @@
 package home.sweethome.atf.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,27 +12,24 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
-                .formLogin()
-                .and()
-                .logout()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/register", "/css/**").permitAll()
-                .antMatchers("/", "/users", "/new-user").hasAnyRole("USER")
-                .anyRequest().authenticated();
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity
 
-        return httpSecurity.build();
-    }
+        .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
+        .httpBasic(withDefaults())
+        .formLogin(withDefaults())
+        .securityMatcher("/register", "/css/**")
+        .securityMatcher("/", "/users", "/new-user");
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    return httpSecurity.build();
+  }
+
+  @Bean
+  public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 }
