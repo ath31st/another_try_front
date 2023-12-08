@@ -13,17 +13,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserService userService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final UserService userService;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUser(username);
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    User user = userService.getUser(username);
 
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername())
-                .password(bCryptPasswordEncoder.encode(user.getPassword()))
-                .roles("USER")
-                .build();
-    }
+    return org.springframework.security.core.userdetails.User.builder()
+        .username(user.getUsername())
+        .password(bCryptPasswordEncoder.encode(user.getPassword()))
+        .roles("USER")
+        .build();
+  }
 }

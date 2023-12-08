@@ -22,9 +22,9 @@ public class SecurityConfig {
         .csrf(AbstractHttpConfigurer::disable)
         .cors(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/register", "/css/**").permitAll();
-            auth.requestMatchers("/", "/users", "/new-user").hasRole("USER");
-            auth.anyRequest().authenticated();
+          auth.requestMatchers("/register", "/css/**").permitAll();
+          auth.requestMatchers("/", "/users", "/new-user").hasRole("USER");
+          auth.anyRequest().authenticated();
         })
         .httpBasic(withDefaults())
         .formLogin(withDefaults());
