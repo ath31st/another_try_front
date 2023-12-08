@@ -1,5 +1,6 @@
 package home.sweethome.atf.service;
 
+import home.sweethome.atf.ecxeption.UserServiceException;
 import home.sweethome.atf.entity.User;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,12 @@ public class UserService {
     return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
   }
 
-  public void register(User userData) throws RuntimeException {
+  public void register(User userData) {
     User user = getUser(userData.getUsername());
-    if (user != null) throw new RuntimeException();
+    if (user != null) {
+      throw new UserServiceException("User with credentials: " + user.getUsername()
+          + " already exists");
+    }
 
     users.add(userData);
   }
