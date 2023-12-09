@@ -6,20 +6,26 @@
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('p').animate({
-                fontSize: '48px'
-            }, "slow");
-        });
-    </script>
 </head>
 
 <body>
 <div class="wrapper">
     <div th:include="fragments/header :: site-header"></div>
     <br>
-    <p th:text="'Hello, ' + ${name} + '!'" />
+    <button id="changeColorButton" type="button" class="btn btn-primary">Change Background Color</button>
+    <script>
+        $(document).ready(function() {
+            // Функция для изменения цвета фона
+            function changeBackgroundColor() {
+                const colors = ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ffcc99'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                $('body').css('background-color', randomColor);
+            }
+            $('#changeColorButton').click(function() {
+                changeBackgroundColor();
+            });
+        });
+    </script>
     <br>
     <h2 th:utext="${message}">message</h2>
     <br>
