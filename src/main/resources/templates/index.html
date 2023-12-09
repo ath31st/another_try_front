@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Main page</title>
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('p').animate({
+                fontSize: '48px'
+            }, "slow");
+        });
+    </script>
 </head>
 
 <body>
 <div class="wrapper">
     <div th:include="fragments/header :: site-header"></div>
     <br>
+    <p th:text="'Hello, ' + ${name} + '!'" />
     <br>
     <h2 th:utext="${message}">message</h2>
     <br>
