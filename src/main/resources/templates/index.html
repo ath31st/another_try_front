@@ -11,30 +11,24 @@
 <body>
 <div class="wrapper">
     <div th:include="fragments/header :: site-header"></div>
-    <br>
-    <button id="changeColorButton" type="button" class="btn btn-primary">Change Background Color</button>
+    <button id="changeColorButton" type="button" class="btn btn-primary">Change Background Color
+    </button>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Функция для изменения цвета фона
             function changeBackgroundColor() {
                 const colors = ['#ff9999', '#99ff99', '#9999ff', '#ffff99', '#ffcc99'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 $('body').css('background-color', randomColor);
             }
-            $('#changeColorButton').click(function() {
+
+            $('#changeColorButton').click(function () {
                 changeBackgroundColor();
             });
         });
     </script>
-    <br>
     <h2 th:utext="${message}">message</h2>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <div th:include="fragments/footer :: copy"></div>
 </div>
-
 </body>
 </html>

@@ -1,6 +1,7 @@
 package home.sweethome.atf.controller;
 
 import home.sweethome.atf.entity.User;
+import home.sweethome.atf.service.GraphService;
 import home.sweethome.atf.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MainController {
 
   private final UserService userService;
+  private final GraphService graphService;
 
   @GetMapping("/")
   public String mainPage(Model model) {
     model.addAttribute("message", "Welcome to main page!");
+    model.addAttribute("graph", graphService.generateGraph());
     return "index";
   }
 
