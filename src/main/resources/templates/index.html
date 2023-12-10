@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Main page</title>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
 </head>
@@ -24,6 +25,27 @@
 
             $('#changeColorButton').click(function () {
                 changeBackgroundColor();
+            });
+        });
+    </script>
+    <canvas id="graphCanvas" width="200" height="100"></canvas>
+    <script>
+        $(document).ready(function () {
+            const graphData = [[${graph}]];
+            const graphCanvas = document.getElementById('graphCanvas').getContext('2d');
+
+            const chart = new Chart(graphCanvas, {
+                type: 'bar', // тип графика (ваш выбор)
+                data: {
+                    labels: Array.from({length: graphData.length}, (_, i) => i + 1), // метки по оси X
+                    datasets: [{
+                        label: 'Graph Data',
+                        data: graphData, // данные графа
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // цвет плашек графа
+                        borderColor: 'rgba(75, 192, 192, 1)', // цвет границы плашек графа
+                        borderWidth: 1 // ширина границы плашек графа
+                    }]
+                }
             });
         });
     </script>
