@@ -9,13 +9,21 @@
     <script th:src="@{/js/graphBuilder.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/wrapper.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/running-line.css}">
 </head>
 
 <body>
 <div class="wrapper">
     <div th:include="fragments/header :: site-header"></div>
-    <button id="changeColorButton" type="button" class="btn btn-primary">Change Background Color
-    </button>
+    <div class="marquee-container">
+        <div class="marquee-content">Текст для бегущей строки</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const marqueeContent = document.querySelector('.marquee-content');
+            marqueeContent.innerHTML = ">>>> Обновленный текст для бегущей строки >>>>";
+        });
+    </script>
     <canvas id="graphCanvas" width="200" height="100"></canvas>
     <script>
         $(document).ready(function () {
