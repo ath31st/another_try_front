@@ -5,14 +5,31 @@
 
 .marquee-content {
     display: inline-block;
-    animation: marquee 5s linear infinite;
+    animation: marquee 10s linear infinite;
+    margin-left: 100%; /* Начальный отступ, чтобы текст был за пределами видимости */
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(-100%);
+        margin-left: 100%;
     }
     100% {
-        transform: translateX(100%);
+        margin-left: -100%; /* Заканчиваем с отрицательным отступом, чтобы весь текст оказался видимым */
+    }
+}
+
+/* Для бегущей строки справа налево (измененное направление) */
+.marquee-reverse .marquee-content {
+    animation: marquee-reverse 10s linear infinite;
+    margin-left: -100%; /* Начальный отступ для обратного направления */
+}
+
+/* Анимация для бегущей строки справа налево */
+@keyframes marquee-reverse {
+    0% {
+        margin-left: -100%;
+    }
+    100% {
+        margin-left: 100%; /* Заканчиваем с положительным отступом, чтобы весь текст оказался видимым */
     }
 }
