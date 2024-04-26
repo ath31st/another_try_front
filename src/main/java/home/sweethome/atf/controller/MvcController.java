@@ -4,16 +4,15 @@ import home.sweethome.atf.entity.User;
 import home.sweethome.atf.service.GraphService;
 import home.sweethome.atf.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@Controller
+@org.springframework.stereotype.Controller
 @RequiredArgsConstructor
-public class MainController {
+public class MvcController {
 
   private final UserService userService;
   private final GraphService graphService;
