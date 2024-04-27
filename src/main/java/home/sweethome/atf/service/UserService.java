@@ -4,6 +4,7 @@ import home.sweethome.atf.ecxeption.UserServiceException;
 import home.sweethome.atf.entity.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,17 +27,26 @@ public class UserService {
   }
 
   public User getUser(String username) {
-    return users.stream().filter(u -> u.getUsername().equals(username)).findFirst().orElse(new User());
+    return users.stream()
+        .filter(u -> u.getUsername().equals(username))
+        .findFirst()
+        .orElse(new User());
   }
 
   public void register(User userData) {
-    User user = getUser(userData.getUsername());
-    if (user != null) {
-      throw new UserServiceException("User with credentials: " + user.getUsername()
-          + " already exists");
-    }
+    isUserExist(userData.getUsername());
 
     users.add(userData);
   }
 
+  private void isUserExist(String username) {
+    Optional<User> user = users.stream()
+        .filter(u -> u.getUsername().equals(username.trim()))
+        .findFirst();
+
+    if (user.isPresent()) {
+      throw new UserServiceException("User with credentials: " + username
+          + " already exists");
+    }
+  }
 }
