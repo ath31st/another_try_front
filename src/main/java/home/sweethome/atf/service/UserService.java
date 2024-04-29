@@ -13,17 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
   private final List<User> users = new ArrayList<>();
-
-  {
-    users.add(new User("lom", "Pavel", "Lomov", "12345", "lom@mail.ru"));
-    users.add(new User("kenny", "Ken", "Komma", "1234", "ken@mail.ru"));
-    users.add(new User("omm", "Lorry", "Physics", "123", "omm@mail.ru"));
-  }
 
   public void saveNewUser(User user) {
     users.add(user);
+  }
+
+  public void addUsers(List<User> userList) {
+    users.addAll(userList);
   }
 
   public User getUser(String username) {
