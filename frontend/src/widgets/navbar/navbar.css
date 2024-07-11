@@ -1,0 +1,13 @@
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+}
+
+.navbar a {
+    color: #e7e7e7;
+}
