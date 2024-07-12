@@ -3,11 +3,11 @@ import Navbar from '../navbar/navbar';
 
 const Header = () => {
   return (
-      <div>
-        <title>Fullstack app</title>
+      <>
+        <img src="/logo192.png" alt="Company Logo" className="logo"/>
         <link rel="icon" href="/favicon.ico"/>
         < Navbar/>
-      </div>
+      </>
   );
 };
 
